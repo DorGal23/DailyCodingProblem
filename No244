@@ -15,15 +15,15 @@ public class No244 {
         }
     }
 
-//    public static void main(String[] args) {
-//        Scanner myObj = new Scanner(System.in);
-//        System.out.print("Enter boundary number: ");
-//        boolean[] arr = new boolean[myObj.nextInt()+1]; //false = prime
-//        markNonPrimes(arr, 2);
-//        System.out.println("The prime numbers in this range are: ");
-//        for (int i=2; i<arr.length; i++){
-//            if(!arr[i])
-//                System.out.print(i+" ");
-//        }
-//    }
+    public static void main(String[] args) {
+        Scanner myObj = new Scanner(System.in);
+        System.out.print("Enter boundary number: ");
+        boolean[] arr = new boolean[myObj.nextInt()+1]; //false = prime
+        markNonPrimes(arr, 2);
+        System.out.println("The prime numbers in this range are: ");
+        for (int i=2; i<arr.length; i++){
+            if(!arr[i])
+                System.out.print(i+" ");
+        }
+    }
 }
