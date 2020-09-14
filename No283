@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class No283 {
+
+    public static boolean isRegular(int num){
+        if(num==2 || num==3 || num==5 || num==1)
+            return true;
+        else if (num%2==0 && isRegular(num/2) ||
+                 num%3==0 && isRegular(num/3) ||
+                 num%5==0 && isRegular(num/5))
+            return true;
+        else
+            return false;
+    }
+
+    public static void findRegularNums(int amount, int base){
+        if(amount > 0){
+            if(isRegular(base)){
+                System.out.print(base+", ");
+                findRegularNums(amount-1, base+1);
+            }
+            else{
+                findRegularNums(amount, base+1);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner myObj = new Scanner(System.in);
+        System.out.print("Enter number: ");
+        int N = myObj.nextInt();
+        System.out.println("The first N regular numbers are: ");
+        findRegularNums(N, 1);
+    }
+}
