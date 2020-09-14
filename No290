@@ -1,0 +1,24 @@
+public class No290 {
+
+    public static int Quxes(char[] arr){
+        int R=0, G=0, B=0;
+        for (char c : arr) {
+            switch (c) {
+                case 'R' -> R++;
+                case 'G' -> G++;
+                case 'B' -> B++;
+            }
+        }
+        if (R==arr.length || G==arr.length || B==arr.length)
+            return arr.length;
+        else if (R==B && B==G)
+            return 2;
+        else
+            return 1;
+    }
+
+    public static void main(String[] args){
+        char[] arr = {'B', 'R', 'R', 'B', 'G', 'G'};
+        System.out.print("The smallest number of Quxes remaining is: "+Quxes(arr));
+    }
+}
