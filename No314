@@ -1,0 +1,70 @@
+public class No314 {
+
+    public static int findMinRange(int[] L, int[] T){
+        int absMin = 0;
+        int listenerMin = Integer.MAX_VALUE;
+        int t=0;
+        int l=0;
+        int lastMinTowers=0;
+        if (T.length==1 && L.length==1){
+            return Math.abs(T[0]-L[0]);
+        }
+        else if (T.length==1 && L.length>1){
+            return Math.max(Math.abs(T[0]-L[0]), Math.abs(T[0]-L[L.length-1]));
+        }
+        else {
+            while (l < L.length && t < T.length) {
+                if (T[t] > L[l]) {
+                    int tempMin = Math.min(T[t] - L[l], listenerMin);
+                    absMin = Math.max(absMin, tempMin);
+                    listenerMin = Integer.MAX_VALUE;
+                    l++;
+                    t = lastMinTowers;
+                } else {
+                    listenerMin = Math.min(listenerMin, L[l] - T[t]);
+                    lastMinTowers = t;
+                    t++;
+                }
+            }
+            if (t == T.length) {
+                absMin = Math.max(absMin, listenerMin);
+            }
+            return absMin;
+        }
+    }
+
+    public static void main(String[] args){
+        int[] Listeners = {1, 4, 8, 11, 14, 18};
+        int[] Towers = {2, 7, 10, 20, 30};
+        int[] Listeners1 = {1, 4, 8, 10, 17, 18, 35};
+        int[] Towers1 = {2, 7, 10, 20, 30};
+        int[] Listeners2 = {1, 2, 4, 5};
+        int[] Towers2 = {1};
+        int[] Listeners3 = {1, 2, 3, 4, 5};
+        int[] Towers3 = {1, 10};
+        int[] Listeners4 = {1};
+        int[] Towers4 = {2, 3, 4, 5};
+        int[] Listeners5 = {1, 10};
+        int[] Towers5 = {2, 3, 4, 5};
+
+        System.out.println(findMinRange(Listeners, Towers));
+        System.out.println(findMinRange(Listeners1, Towers1));
+        System.out.println(findMinRange(Listeners2, Towers2));
+        System.out.println(findMinRange(Listeners3, Towers3));
+        System.out.println(findMinRange(Listeners4, Towers4));
+        System.out.println(findMinRange(Listeners5, Towers5));
+    }
+}
+
+
+/**
+ * You are the technical director of WSPT radio, serving listeners nationwide.
+ * For simplicity's sake we can consider each listener to live along a horizontal line stretching from 0 (west) to 1000 (east).
+ *
+ * Given a list of N listeners, and a list of M radio towers, each placed at various locations along this line,
+ * determine what the minimum broadcast range would have to be in order for each listener's home to be covered.
+ *
+ * For example, suppose listeners = [1, 5, 11, 20], and towers = [4, 8, 15].
+ * In this case the minimum range would be 5, since that would be required for the tower at position 15
+ * to reach the listener at position
+ */
